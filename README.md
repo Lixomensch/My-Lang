@@ -1,97 +1,73 @@
-```markdown
 # My-Lang
 
-Uma linguagem de programação customizada implementada em Python usando PLY (lex & yacc). Ela suporta:
+A custom programming language implemented in Python using PLY (lex & yacc). It supports:
 
-- **Tipos de dados**  
-  - Números (inteiros e ponto-flutuante)  
-  - Texto (strings)  
-  - Booleanos literais (`true` / `false`)  
-- **Expressões**  
-  - Aritméticas (`+`, `-`, `*`, `/`)  
-  - Relacionais (`==`, `!=`, `<`, `<=`, `>`, `>=`)  
-  - Lógicas (`and`, `or`, `not`)  
-  - Concatenação de strings via `+`  
-- **Variáveis** com escopo léxico  
-- **Estruturas condicionais**: `if (…) { … } else { … }`  
-- **Estruturas de repetição**: `while (…) { … }`  
-- **Entrada e saída**:  
-  - `print(expr);`  
-  - `input("prompt")` tanto como expressão quanto statement  
-- **Funções**: declaração com `func nome(par1, par2…) { … }` e chamada `nome(arg1, arg2…);`
+* **Data Types**
 
----
+  * Numbers (integers and floating-point)
+  * Text (strings)
+  * Boolean literals (`true` / `false`)
+* **Expressions**
 
-## Estrutura do Projeto
+  * Arithmetic (`+`, `-`, `*`, `/`)
+  * Relational (`==`, `!=`, `<`, `<=`, `>`, `>=`)
+  * Logical (`and`, `or`, `not`)
+  * String concatenation with `+`
+* **Variables** with lexical scope
+* **Conditional Structures**: `if (…) { … } else { … }`
+* **Loop Constructs**: `while (…) { … }`
+* **Input and Output**:
 
-```
+  * `print(expr);`
+  * `input("prompt")` as both an expression and a statement
+* **Functions**: declare with `func name(param1, param2…) { … }` and invoke with `name(arg1, arg2…);`
 
-My-Lang/
-├── src/
-│   ├── common/
-│   │   ├── lexer.py         # definição de tokens e tratamento de erros lexicais
-│   │   ├── ast\_nodes.py     # classes AST (números, strings, variáveis, ops, controle, funções)
-│   │   ├── parser.py        # grammar rules, LALR parser, erros sintáticos detalhados
-│   │   └── interpreter.py   # Environment & Interpreter, dispatch visit\_\*, escopo, built-ins
-│   ├── main.py              # runner de arquivo ou modo REPL interativo
-│   └── repl.py              # REPL standalone (pode invocar diretamente)
-├── test/
-│   ├── test\_program.mylang  # programa de exemplo simples
-│   └── test\_program2.mylang # programa de teste abrangente
-├── README.md                # este arquivo
-└── requirements.txt         # dependências (PLY)
+## Installation
 
-````
+1. Clone this repository:
 
----
-
-## Instalação
-
-1. Clone este repositório:
    ```bash
-   git clone https://github.com/SeuUsuario/My-Lang.git
+   git clone https://github.com/YourUser/My-Lang.git
    cd My-Lang
-````
+   ```
 
-2. Crie um ambiente virtual (opcional, mas recomendado):
+2. (Optional, but recommended) Create a virtual environment:
 
    ```bash
    python -m venv .venv
-   source .venv/bin/activate  # Linux/macOS
-   .venv\Scripts\activate     # Windows
+   source .venv/bin/activate    # Linux/macOS
+   .venv\Scripts\activate       # Windows
    ```
 
-3. Instale as dependências:
+3. Install dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-   > **requirements.txt** deve conter ao menos:
+   > **requirements.txt** should include at least:
    >
-   > ```
+   > ```txt
    > ply>=3.11
    > ```
 
----
+## Usage
 
-## Uso
-
-### Rodar um arquivo `.mylang`
+### Running a `.mylang` file
 
 ```bash
 python src/main.py test/test_program.mylang
 ```
 
-### Modo REPL interativo
+### Interactive REPL Mode
 
 ```bash
 python src/main.py
 ```
 
-Exemplos de comandos no REPL:
+Examples in the REPL:
 
-```
+```mylang
 >>> var x = 5;
 >>> print(x * 2);
 10
@@ -100,12 +76,10 @@ Exemplos de comandos no REPL:
 7
 ```
 
----
-
-## Exemplos de Código
+## Code Examples
 
 ```mylang
-// Programa Fibonacci simples
+// Simple Fibonacci program
 func fib(n) {
   if (n < 2) {
     return n;
@@ -114,39 +88,23 @@ func fib(n) {
   }
 }
 
-var num = input("Digite um inteiro: ");
+var num = input("Enter an integer: ");
 print("Fib(" + num + ") = " + fib(num));
 ```
 
----
+## Tests
 
-## Testes
+The two programs in `test/` cover all features:
 
-Os dois programas em `test/` cobrem todas as funcionalidades:
+* **test\_program.mylang**: basic cases (types, expressions, if, while, simple functions).
+* **test\_program2.mylang**: advanced cases (scoping, nested loops, booleans, side-effects).
 
-* **test\_program.mylang**: casos básicos (tipos, expressões, if, while, funções simples).
-* **test\_program2.mylang**: casos avançados (escopo, loops aninhados, booleanos, side-effects).
-
-Para executá-los, use:
+To run them:
 
 ```bash
 python src/main.py test/test_program2.mylang
 ```
 
----
+## License
 
-## Contribuição
-
-1. Abra uma *issue* descrevendo sua sugestão ou correção.
-2. Faça um *fork* e crie uma *branch feature/x*.
-3. Implemente e teste suas mudanças.
-4. Envie um *pull request* detalhando o que foi alterado.
-
----
-
-## Licença
-
-MIT © \[Seu Nome]
-
-```
-```
+This repository is licensed under the [MIT License](https://github.com/YourUser/My-Lang/blob/main/LICENSE).
