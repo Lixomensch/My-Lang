@@ -3,6 +3,7 @@
 from common.nodes import BlockNode
 
 
+# pylint: disable=C0103
 class Environment:
     def __init__(self, parent=None):
         """Initializes a new Environment.
@@ -124,7 +125,7 @@ class Interpreter:
             raise Exception(f"No visit method for {type(node).__name__}")
         return getattr(self, method_name)(node, env)
 
-    def visit_block_node(self, node, env):
+    def visit_BlockNode(self, node, env):
         """
         Visits a BlockNode and executes each statement in the block.
 
@@ -140,7 +141,7 @@ class Interpreter:
             result = self.visit(stmt, env)
         return result
 
-    def visit_vardecl_node(self, node, env):
+    def visit_VarDeclNode(self, node, env):
         """
         Visits a VarDeclNode and defines a new variable in the current environment.
 
@@ -155,7 +156,7 @@ class Interpreter:
         value = self.visit(node.expr, env) if node.expr is not None else None
         env.define(node.name, value)
 
-    def visit_assignment_node(self, node, env):
+    def visit_AssignmentNode(self, node, env):
         """
         Visits an AssignmentNode and assigns the value of the expression to the variable.
 
@@ -169,7 +170,7 @@ class Interpreter:
         value = self.visit(node.expr, env)
         env.set(node.name, value)
 
-    def visit_number_node(self, node, _env):
+    def visit_NumberNode(self, node, _env):
         """
         Visits a NumberNode and returns the value of the node.
 
@@ -181,7 +182,7 @@ class Interpreter:
         """
         return node.value
 
-    def visit_string_node(self, node, _env):
+    def visit_StringNode(self, node, _env):
         """
         Visits a StringNode and returns the value of the node.
 
@@ -193,7 +194,7 @@ class Interpreter:
         """
         return node.value
 
-    def visit_varaccess_node(self, node, env):
+    def visit_VarAccessNode(self, node, env):
         """
         Visits a VarAccessNode and returns the value of the variable.
 
@@ -213,7 +214,7 @@ class Interpreter:
         return env.get(node.name)
 
     # pylint: disable=R0911,R0912
-    def visit_binary_op_node(self, node, env):
+    def visit_BinaryOpNode(self, node, env):
         """
         Visits a BinaryOpNode and evaluates the binary operation.
 
@@ -228,6 +229,7 @@ class Interpreter:
         :return: The result of applying the binary operation on the operands.
         :raises Exception: If an unknown binary operator is encountered.
         """
+
         left = self.visit(node.left, env)
         right = self.visit(node.right, env)
         op = node.op
@@ -263,9 +265,7 @@ class Interpreter:
             return bool(left) or bool(right)
         raise Exception(f"Unknown binary operator: {op}")
 
-    # pylint: enable=R0911,R0912
-
-    def visit_unary_op_node(self, node, env):
+    def visit_UnaryOpNode(self, node, env):
         """
         Visits a UnaryOpNode and evaluates the unary operation.
 
@@ -288,7 +288,7 @@ class Interpreter:
             return +operand
         raise Exception(f"Unknown unary operator: {op}")
 
-    def visit_if_node(self, node, env):
+    def visit_IfNode(self, node, env):
         """
         Visits an IfNode and evaluates the conditional expression.
 
@@ -308,7 +308,7 @@ class Interpreter:
             return self.visit(node.else_block, Environment(env))
         return None
 
-    def visit_while_node(self, node, env):
+    def visit_WhileNode(self, node, env):
         """
         Visits a WhileNode and evaluates the loop condition and body.
 
@@ -325,7 +325,7 @@ class Interpreter:
             result = self.visit(node.body, Environment(env))
         return result
 
-    def visit_func_decl_node(self, node, env):
+    def visit_FuncDeclNode(self, node, env):
         """
         Visits a FuncDeclNode and defines a function in the current environment.
 
@@ -340,7 +340,7 @@ class Interpreter:
 
         env.define_func(node.name, node)
 
-    def visit_func_call_node(self, node, env):
+    def visit_FuncCallNode(self, node, env):
         """
         Visits a FuncCallNode and evaluates the function call expression.
 
@@ -365,7 +365,7 @@ class Interpreter:
             new_env.define(param, self.visit(arg, env))
         return self.visit(BlockNode(func.body), new_env)
 
-    def visit_print_node(self, node, env):
+    def visit_PrintNode(self, node, env):
         """
         Visits a PrintNode and evaluates the expression to print its value.
 
@@ -380,7 +380,7 @@ class Interpreter:
         value = self.visit(node.expr, env)
         print(value)
 
-    def visit_input_node(self, node, _env):
+    def visit_InputNode(self, node, _env):
         """
         Visits an InputNode and evaluates the prompt expression to read input from the user.
 
@@ -395,3 +395,6 @@ class Interpreter:
         """
         prompt = node.prompt
         return input(prompt)
+
+
+# pylint: enable=c0103
