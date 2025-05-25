@@ -50,7 +50,6 @@ target/
 log/*
 tests/*
 !tests/.gitkeep
-test/*
 backup/*
 output/*
 src/common/parsetab.py

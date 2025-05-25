@@ -1,0 +1,39 @@
+// Teste completo da linguagem personalizada
+
+// Tipos de dados e expressões
+var x = 10;
+var y = 20;
+var greeting = "Olá do seu novo interpretador!";
+
+print(greeting);
+print("x = " + x);
+print("y = " + y);
+print("x + y = " + (x + y));
+
+// Relacionais e lógicas
+print("x < y? " + (x < y));
+print("x == y? " + (x == y));
+var flag = not (x > y) and (x < y);
+print("flag = " + flag);
+
+// Condicional
+if (flag) {
+    print("Flag é verdadeiro");
+} else {
+    print("Flag é falso");
+}
+
+// Estrutura de repetição
+var count = 0;
+while (count < 3) {
+    print("Contagem: " + count);
+    count = count + 1;
+}
+
+// Função e chamada
+func saudacao(nome) {
+    print("Olá, " + nome + "! Bem-vindo à minha linguagem.");
+}
+
+var nomeUser = input("Digite seu nome: ");
+saudacao(nomeUser);

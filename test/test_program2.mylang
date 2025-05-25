@@ -1,0 +1,69 @@
+// Teste abrangente da linguagem My-Lang
+
+// 1. Operações numéricas (inteiros e floats)
+var a = 7;
+var b = 2.5;
+print("a = " + a);
+print("b = " + b);
+print("a + b = " + (a + b));
+print("a * b = " + (a * b));
+print("a / b = " + (a / b));
+print("a - b = " + (a - b));
+
+// 2. Expressões relacionais e lógicas
+var eq = (a == 7);
+var neq = (b != 2);
+var gt = (a > b);
+var le = (a <= 7);
+print("eq? " + eq);
+print("neq? " + neq);
+print("gt? " + gt);
+print("le? " + le);
+
+var logic = not (a < 5) and (b > 1) or false;
+print("logic result: " + logic);
+
+// 3. Escopo de variáveis
+var x = 10;
+func scopeTest() {
+    var x = 100;
+    print("x dentro da função: " + x);
+}
+print("x fora antes: " + x);
+scopeTest();
+print("x fora depois: " + x);
+
+// 4. Estruturas condicionais aninhadas
+if (a > 5) {
+    print("a é maior que 5");
+    if (b < 3) {
+        print("e b é menor que 3");
+    } else {
+        print("mas b não é menor que 3");
+    }
+} else {
+    print("a não é maior que 5");
+}
+
+// 5. Estruturas de repetição (while)
+var i = 1;
+while (i <= 3) {
+    var j = 1;
+    while (j <= 2) {
+        print("i=" + i + ", j=" + j);
+        j = j + 1;
+    }
+    i = i + 1;
+}
+
+// 6. Funções com parâmetros e side-effects (print)
+func saudacao(nome, hora) {
+    print("Olá, " + nome + "! Agora são " + hora + "h.");
+}
+var username = input("Digite seu nome: ");
+var hour = input("Digite a hora atual (número): ");
+saudacao(username, hour);
+
+// 7. Testando input em expressão e statement
+print("Somar 5 ao número informado: " + (input("Número para soma: ") + 5));
+input("Pressione Enter para finalizar...");
